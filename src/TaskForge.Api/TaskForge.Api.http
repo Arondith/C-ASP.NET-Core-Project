@@ -1,0 +1,57 @@
+@TaskForge_HostAddress = http://localhost:5000
+@token = paste-token-here
+@projectId = paste-project-id-here
+
+### Register
+POST {{TaskForge_HostAddress}}/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "developer@example.com",
+  "password": "StrongPass123!"
+}
+
+### Login
+POST {{TaskForge_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "developer@example.com",
+  "password": "StrongPass123!"
+}
+
+### Create project
+POST {{TaskForge_HostAddress}}/api/projects
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Portfolio API",
+  "description": "Backend engineering portfolio project"
+}
+
+### List projects
+GET {{TaskForge_HostAddress}}/api/projects
+Authorization: Bearer {{token}}
+
+### Create work item
+POST {{TaskForge_HostAddress}}/api/projects/{{projectId}}/work-items
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Add CI pipeline",
+  "description": "Build and test on every push",
+  "priority": "High"
+}
+
+### Filter work items
+GET {{TaskForge_HostAddress}}/api/projects/{{projectId}}/work-items?status=Todo&priority=High&page=1&pageSize=20
+Authorization: Bearer {{token}}
+
+### Project statistics
+GET {{TaskForge_HostAddress}}/api/projects/{{projectId}}/stats
+Authorization: Bearer {{token}}
+
+### Health
+GET {{TaskForge_HostAddress}}/health
