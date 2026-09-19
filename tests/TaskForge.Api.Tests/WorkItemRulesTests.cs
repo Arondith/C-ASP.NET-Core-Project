@@ -1,5 +1,6 @@
 using TaskForge.Api.Domain;
 using TaskForge.Api.Services;
+using Xunit;
 
 namespace TaskForge.Api.Tests;
 
